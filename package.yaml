@@ -1,0 +1,57 @@
+name:                frost-lang
+version:             0.1.0.0
+git:                 https://gitlab.com/xain-foundation/frost
+license:             GPL-3
+author:              XAIN Stichting
+maintainer:          info@xain.foundation
+copyright:           2019 XAIN Stichting, Amsterdam
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            FROST Access Control Language
+category:            Compilers/Interpreters
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitLab at <https://gitlab.com/xain-foundation/frost>
+
+dependencies:
+- base >= 4.7 && < 5
+- mtl
+- aeson
+- text
+- aeson-pretty
+- bytestring
+- QuickCheck
+- megaparsec
+- parser-combinators
+- optparse-applicative
+
+library:
+  source-dirs: src
+
+executables:
+  frostc:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - frost-lang
+
+tests:
+  frost-lang-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - frost-lang
